@@ -1,0 +1,22 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  arduino_ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Initialize
+        run: make init
+      - name: Create config header
+        run: |
+          cp ./DeviceConfig.hpp.template ./DeviceConfig.hpp
+      - name: Compile Sketch
+        run: make compile
+
