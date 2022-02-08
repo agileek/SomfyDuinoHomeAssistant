@@ -12,7 +12,7 @@ Control your somfy IO covers with Home Assistant through MQTT
 I got a spare remote (Situo 5 io Pure II) that I opened and soldered, so that I won't have to by the crazy expensive (and closed source) somfy box to control my 3 veranda's covers.
 Kudos to them, their board is really clean and self-documented, all I had to do was solder the cables on the labeled slots.
 
-TODO: put image
+![](images/situo_II_board.jpg)
 
 
 ## Getting Started, the terminal way
