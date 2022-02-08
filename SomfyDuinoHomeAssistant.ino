@@ -111,6 +111,7 @@ void onCoverCommand(HACover::CoverCommand cmd) {
         delay(holdTime);
         digitalWrite(upPin, HIGH);
         cover.setState(HACover::StateOpen);
+        cover.setPosition(100);
     } else if (cmd == HACover::CommandClose) {
         Serial.println("Command: Close");
         cover.setState(HACover::StateClosing);
@@ -118,6 +119,7 @@ void onCoverCommand(HACover::CoverCommand cmd) {
         delay(holdTime);
         digitalWrite(downPin, HIGH);
         cover.setState(HACover::StateClosed);
+        cover.setPosition(0);
     } else if (cmd == HACover::CommandStop) {
         Serial.println("Command: Stop");
         cover.setState(HACover::StateStopped);
@@ -125,13 +127,4 @@ void onCoverCommand(HACover::CoverCommand cmd) {
         delay(holdTime);
         digitalWrite(myPin, HIGH);
     }
-
-    // Available states:
-    // HACover::StateClosed
-    // HACover::StateClosing
-    // HACover::StateOpen
-    // HACover::StateOpening
-    // HACover::StateStopped
-
-    // You can also report position using setPosition() method
 }
