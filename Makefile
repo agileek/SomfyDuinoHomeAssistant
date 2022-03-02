@@ -19,3 +19,5 @@ upload: compile
 monitor:
 	arduino-cli monitor --port /dev/ttyUSB0
 
+lint:
+	arduino-lint --compliance strict
