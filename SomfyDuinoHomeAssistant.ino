@@ -1,18 +1,11 @@
 #include "DeviceConfig.hpp"
 
-// Sanity check
-#if ENABLE_MQTT && !ENABLE_WI_FI
-	#error Wi-Fi must be enabled for MQTT to work properly
-#endif
 
-#if ENABLE_WI_FI
-  #include <ESP8266WiFi.h>
-#endif
+#include <ESP8266WiFi.h>
 
-#if ENABLE_MQTT
-	#include <ArduinoHA.h>
+#include <ArduinoHA.h>
 
-
+// MQTT setup
 HADevice device;
 
 WiFiClient client;
@@ -20,22 +13,13 @@ WiFiClient client;
 HAMqtt mqtt(client, device);
 HACover cover(DEVICE_NAME);
 
-#endif
-
 
 int downPin = D5;
 int selectPin = D6;
 int myPin = D7;
 int upPin = D8;
 
-boolean upPress = false;
-boolean downPress = false;
-boolean myPress = false;
-boolean selectPress = false;
 unsigned long holdTime = 500;
-int repeatSend = 0;
-
-char incomingChar;
 
 void setup() {
   Serial.begin(9600);
@@ -59,7 +43,6 @@ void setup() {
   Serial.println("Select");
 
 
-#if ENABLE_WI_FI
 	Serial.println("Setup WiFi");
 	WiFi.begin(WI_FI_SSID, WI_FI_PASSWORD);
 	Serial.println("");
@@ -78,9 +61,7 @@ void setup() {
 	Serial.println(WiFi.macAddress());
 	Serial.print("Hostname: ");
 	Serial.println(String(WiFi.hostname()));
-#endif
 
-#if ENABLE_MQTT
   byte mac[WL_MAC_ADDR_LENGTH];
 	WiFi.macAddress(mac);
   device.setUniqueId(mac, sizeof(mac));
@@ -94,13 +75,10 @@ void setup() {
 	} else {
 		mqtt.begin(MQTT_ADDR);
 	}
-#endif
 }
 
 void loop() {
-#if ENABLE_MQTT
     mqtt.loop();
-#endif
 }
 
 void onCoverCommand(HACover::CoverCommand cmd) {

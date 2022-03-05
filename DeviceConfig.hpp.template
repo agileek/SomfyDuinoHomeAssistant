@@ -1,25 +1,15 @@
 #define DEVICE_NAME "UniqueDeviceName"
 
 // ------ WI-FI ------
-// Enables or disables Wi-Fi
-#define ENABLE_WI_FI true
-
-// If Wi-Fi is enabled, add Wi-Fi credentials
 #define WI_FI_SSID "SSID"
 #define WI_FI_PASSWORD "PASSWORD"
 
 // ------ MQTT ------
-// Enables or disables MQTT
-#define ENABLE_MQTT true
-
-// If MQTT is enabled, fill out information below
-
 // The IP address of your MQTT broker
 #define MQTT_ADDR IPAddress(127, 0, 0, 1)
 
 // Enables or disables MQTT authentication
 #define MQTT_AUTHENTICATION false
-
 // If Authentication is enabled, add MQTT credentials
 #define MQTT_USERNAME "REPLACE_WITH_YOUR_MQTT_USERNAME"
 #define MQTT_PASSWORD "REPLACE_WITH_YOUR_MQTT_PASSWORD"

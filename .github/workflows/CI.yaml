@@ -11,12 +11,15 @@ jobs:
 
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1
+      
 
       - name: Initialize
         run: make init
       - name: Create config header
         run: |
           cp ./DeviceConfig.hpp.template ./DeviceConfig.hpp
+      - name: Lint
+        uses: arduino/arduino-lint-action@v1
       - name: Compile Sketch
         run: make compile
 
